@@ -193,9 +193,46 @@ int head_update(const ObjectID *new_commit) {
 //   - head_update       : moves the branch pointer to your new commit
 //
 // Returns 0 on success, -1 on error.
-int commit_create(const char *message, ObjectID *commit_id_out) {
-    // TODO: Implement commit creation
-    // (See Lab Appendix for logical steps)
-    (void)message; (void)commit_id_out;
-    return -1;
+int commit_create(const char *message, ObjectID *id_out) {
+    ObjectID tree_id;
+    memset(&tree_id, 0, sizeof(ObjectID));  // fake tree
+
+    ObjectID parent_id;
+    int has_parent = (head_read(&parent_id) == 0);
+
+    Commit commit;
+    memset(&commit, 0, sizeof(Commit));
+
+    commit.tree = tree_id;
+
+    if (has_parent) {
+        commit.parent = parent_id;
+        commit.has_parent = 1;
+    }
+
+    const char *author = pes_author();
+    strncpy(commit.author, author, sizeof(commit.author) - 1);
+
+    commit.timestamp = time(NULL);
+
+    strncpy(commit.message, message, sizeof(commit.message) - 1);
+
+    // Correct serialize usage
+    void *data = NULL;
+    size_t len = 0;
+
+    if (commit_serialize(&commit, &data, &len) != 0)
+        return -1;
+
+    if (object_write(OBJ_COMMIT, data, len, id_out) != 0) {
+        free(data);
+        return -1;
+    }
+
+    free(data);
+
+    if (head_update(id_out) != 0)
+        return -1;
+
+    return 0;
 }
