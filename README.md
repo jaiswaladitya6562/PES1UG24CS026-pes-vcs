@@ -1,3 +1,9 @@
+PROJECT SCREENSHOTS:
+<img width="536" height="77" alt="WhatsApp Image 2026-04-20 at 17 32 04" src="https://github.com/user-attachments/assets/581ef999-30e5-4006-a701-961b78a99d26" />
+<img width="812" height="231" alt="WhatsApp Image 2026-04-20 at 17 47 49" src="https://github.com/user-attachments/assets/953059d6-efd8-43f8-b856-76fc4f3f4b1b" />
+<img width="526" height="167" alt="WhatsApp Image 2026-04-20 at 18 18 36" src="https://github.com/user-attachments/assets/c1207e61-1017-4c48-b0aa-315effa614da" />
+<img width="635" height="234" alt="WhatsApp Image 2026-04-20 at 19 18 38" src="https://github.com/user-attachments/assets/6f0ddc08-2793-4f18-9860-ec745c222fcc" />
+
 # Building PES-VCS — A Version Control System from Scratch
 
 **Objective:** Build a local version control system that tracks file changes, stores snapshots efficiently, and supports commit history. Every component maps directly to operating system and filesystem concepts.
